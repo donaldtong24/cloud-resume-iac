@@ -31,7 +31,12 @@ jobs:
         # -auto-approve is critical because there is no human to type 'yes' in GitHub
         run: terraform apply -auto-approve
 
-      - name: Invalidate CloudFront
+      - name: Sync S3 Bucket
         run: |
-          DIST_ID=$(terraform output -raw cloudfront_distribution_id)
-          aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
+          aws s3 sync ./website s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
+        # Replace './website' with the folder name where your index.html is located
+
+      # Invalidate CloudFront (The "Refresh" Button)
+      - name: CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

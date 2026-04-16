@@ -37,29 +37,29 @@ resource "aws_s3_bucket_website_configuration" "resume_config" {
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "index.html"
-  source       = "index.html" # Make sure your file is named exactly this in your folder!
+  source       = "./website/index.html" # Make sure your file is named exactly this in your folder!
   content_type = "text/html"
   # THIS IS THE MISSING PIECE:
-  etag = filemd5("index.html")
+  etag = filemd5("./website/index.html")
 }
 #this tells terraform to take your local styles.css file
 resource "aws_s3_object" "style" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "style.css"
-  source       = "style.css" # Ensure this file exists in your project folder
+  source       = "./website/style.css" # Ensure this file exists in your project folder
   content_type = "text/css"
   # THIS IS THE MISSING PIECE:
-  etag = filemd5("style.css")
+  etag = filemd5("./website/style.css")
 }
 # script.js
 resource "aws_s3_object" "javascript" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "script.js"
-  source       = "script.js"
+  source       = "./website/script.js"
   content_type = "text/javascript"
 
   # THIS IS THE MISSING PIECE:
-  etag = filemd5("script.js")
+  etag = filemd5("./website/script.js")
 }
 
 # Set up for OAC and Cloudfront
@@ -103,8 +103,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
 
+  aliases = ["thedonaldtong.com", "www.thedonaldtong.com"]
+
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn      = aws_acm_certificate.cert.arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 }
 
@@ -251,4 +255,64 @@ output "lambda_url" {
 
 output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.s3_distribution.id
+}
+
+# 1. Look up your existing Hosted Zone
+data "aws_route53_zone" "main" {
+  name         = "thedonaldtong.com."
+  private_zone = false
+}
+
+# 2. Request the SSL Certificate
+resource "aws_acm_certificate" "cert" {
+  domain_name       = "thedonaldtong.com"
+  validation_method = "DNS"
+
+  subject_alternative_names = ["www.thedonaldtong.com"]
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# 3. DNS Record for SSL Validation
+resource "aws_route53_record" "cert_validation" {
+  for_each = {
+    for dvo in aws_acm_certificate.cert.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.main.zone_id
+}
+
+# 4. The "A" Record (Points domain to CloudFront)
+resource "aws_route53_record" "root_domain" {
+  zone_id = data.aws_route53_zone.main.zone_id
+  name    = "thedonaldtong.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "www_domain" {
+  zone_id = data.aws_route53_zone.main.zone_id
+  name    = "www.thedonaldtong.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
