@@ -3,104 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donald Tong | Cloud Solutions Architect</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <title>Donald Tong | Cloud Engineer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-
-    <header>
-        <h1>Donald Tong</h1>
-        <p class="subtitle">Cloud Solutions Architect | Security-Focused Engineer</p>
-        <div class="contact-info">
-            <a href="mailto:donaldtong24@gmail.com">Email</a> | 
-            <a href="https://github.com/donaldtong24">GitHub</a> | 
-            <a href="#">LinkedIn</a>
-        </div>
-    </header>
-
-    <main>
-        <section id="summary">
-            <h2>Professional Summary</h2>
-            <p>
-                AWS Solutions Architect (SAA) and CompTIA Security+ certified professional with a background 
-                in secure enterprise development. Specializing in the design of resilient, cost-optimized 
-                cloud architectures and robust Identity & Access Management (IAM) governance. 
-                Adept at bridging the gap between technical requirements and business resilience.
-            </p>
-        </section>
-
-        <section id="certifications">
-            <h2>Certifications</h2>
-            <ul>
-                <li><strong>AWS Certified Solutions Architect – Associate</strong></li>
-                <li><strong>CompTIA Security+</strong></li>
-                <li><strong>AWS Certified Cloud Practitioner</strong></li>
-                <li><em>AWS Certified Developer & CloudOps Associate (In Progress)</em></li>
-            </ul>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Expertise</h2>
-            <div class="skills-grid">
-                <div>
-                    <h3>Architecture</h3>
-                    <ul>
-                        <li>VPC & Networking</li>
-                        <li>High Availability Design</li>
-                        <li>Cost Optimization (FinOps)</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Security</h3>
-                    <ul>
-                        <li>IAM Policy Engineering</li>
-                        <li>JWT & RBAC</li>
-                        <li>KMS Encryption</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Operations</h3>
-                    <ul>
-                        <li>Terraform (IaC)</li>
-                        <li>AWS CDK (Java)</li>
-                        <li>CI/CD Pipelines</li>
-                    </ul>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Donald Tong</h1>
+                <p class="subtitle">Cloud & Backend Developer</p>
+                <div class="contact-info">
+                    <span>Edison, NJ</span> | 
+                    <span><a href="mailto:your-email@example.com">Email</a></span> | 
+                    <span><a href="https://github.com/donaldtong24">GitHub</a></span>
                 </div>
             </div>
-        </section>
-
-        <section id="experience">
-            <h2>Professional Experience</h2>
             
-            <div class="job">
-                <h3>Independent Technical Upskilling & Cloud Research</h3>
-                <p class="date">Sept 2023 – Present</p>
-                <ul>
-                    <li>Dedicated 3,000+ hours to mastering the AWS ecosystem and Cybersecurity frameworks.</li>
-                    <li>Designed and deployed 10+ production-ready lab environments using Terraform.</li>
-                    <li>Engineered least-privilege IAM frameworks to mimic enterprise compliance standards.</li>
-                </ul>
+            <div class="counter-card">
+                <span class="counter-label">Live Visitor Count</span>
+                <div id="count" class="counter-number">...</div>
+                <div class="arch-tag">S3 ➔ CF ➔ Lambda ➔ DynamoDB</div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <div class="left-col">
+                <section>
+                    <h2>Professional Summary</h2>
+                    <p>Highly motivated Developer specializing in cloud-native applications and infrastructure automation. Experienced in building scalable serverless backends and implementing robust CI/CD pipelines to streamline deployment lifecycles and ensure high availability.</p>
+                </section>
+
+                <section>
+                    <h2>Technical Projects</h2>
+                    
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3>AWS Cloud Resume & CI/CD Pipeline</h3>
+                            <span class="date">2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li><strong>Automation:</strong> Engineered a <strong>GitHub Actions</strong> pipeline that triggers <strong>Terraform</strong> on push, automating infrastructure deployment and CloudFront cache invalidation.</li>
+                            <li><strong>Security:</strong> Configured <strong>CloudFront OAC</strong> to restrict S3 bucket access, ensuring the site is served exclusively via global edge locations.</li>
+                            <li><strong>Infrastructure:</strong> Architected a fully <strong>Serverless</strong> stack (Lambda, DynamoDB) to maintain a highly available site with near-zero monthly overhead.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3>Serverless Visitor Counter API</h3>
+                            <span class="date">2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Developed a backend API using <strong>Python (Boto3)</strong> and <strong>AWS Lambda</strong> to interface with <strong>DynamoDB</strong> for real-time data persistence.</li>
+                            <li>Implemented CORS policies and security headers to facilitate secure cross-origin resource sharing between the frontend and AWS Function URLs.</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
 
-            <div class="job">
-                <h3>Associate Software Engineer | Infosys LTD</h3>
-                <p class="date">Aug 2022 – Sept 2023</p>
-                <ul>
-                    <li>Collaborated on AWS environment configurations for Java/Spring Boot microservices.</li>
-                    <li>Integrated JWT-based authentication, reducing the attack surface for sensitive endpoints.</li>
-                    <li>Utilized AWS Cloudwatch and Wireshark to monitor system health and resolve bottlenecks.</li>
-                </ul>
+            <div class="right-col">
+                <section>
+                    <h2>Technical Skills</h2>
+                    <div class="skill-group">
+                        <h4>Cloud & DevOps</h4>
+                        <p>AWS (S3, CloudFront, Lambda, DynamoDB), Terraform, GitHub Actions, CI/CD</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Programming</h4>
+                        <p>Python (Boto3), JavaScript, HTML5, CSS3, PowerShell, Bash</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Education</h2>
+                    <div class="edu-item">
+                        <p><strong>B.S. in Computer Science</strong><br>University Name</p>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="counter">
-            <p>This page has been viewed <span id="count">...</span> times.</p>
-            <p><small>Architecture: S3 > CloudFront > Lambda (Function URL) > DynamoDB</small></p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Donald Tongg | Built with AWS </p>
-    </footer>
-
-    <script src="script.js"></script> </body>
+    <script src="script.js"></script>
+</body>
 </html>
