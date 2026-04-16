@@ -3,59 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donald Tong | Cloud Engineer Portfolio</title>
+    <title>Donald Tong | Cloud Engineer</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="brand">
                 <h1>Donald Tong</h1>
-                <p class="subtitle">Cloud & Backend Developer</p>
-                <div class="contact-info">
-                    <span>Edison, NJ</span> | 
-                    <span><a href="mailto:your-email@example.com">Email</a></span> | 
-                    <span><a href="https://github.com/donaldtong24">GitHub</a></span>
-                </div>
+                <span class="tagline">Cloud Developer</span>
             </div>
             
-            <div class="counter-card">
-                <span class="counter-label">Live Visitor Count</span>
-                <div id="count" class="counter-number">...</div>
-                <div class="arch-tag">S3 ➔ CF ➔ Lambda ➔ DynamoDB</div>
+            <div class="nav-counter">
+                <div class="live-status">
+                    <span class="dot"></span>
+                    <span class="live-text">LIVE</span>
+                </div>
+                <div class="counter-content">
+                    <span class="label">Views:</span>
+                    <span id="count" class="count-number">...</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="contact-header">
+            <div class="contact-links">
+                <a>(732)-986-6269</a> |
+                <a href="mailto:donaldtong24@gmail.com">donaldtong24@gmail.com</a> | 
+                <a href="https://github.com/donaldtong24">github.com/donaldtong24</a> | 
+                <a href="https://linkedin.com/in/donaldtong24">linkedin.com/in/donaldtong24</a>
+                
             </div>
         </header>
 
-        <div class="main-layout">
+        <main class="main-layout">
             <div class="left-col">
                 <section>
                     <h2>Professional Summary</h2>
-                    <p>Highly motivated Developer specializing in cloud-native applications and infrastructure automation. Experienced in building scalable serverless backends and implementing robust CI/CD pipelines to streamline deployment lifecycles and ensure high availability.</p>
+                    <p>Cloud-focused engineer with a strong foundation in secure application development and infrastructure automation. Experienced in building scalable serverless backends and implementing robust CI/CD pipelines to streamline deployment lifecycles and ensure high availability.</p>
                 </section>
 
                 <section>
-                    <h2>Technical Projects</h2>
-                    
+                    <h2>Professional Experience</h2>
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3>Associate Software Engineer | Infosys LTD</h3>
+                            <span class="date">Aug 2022 - Sept 2023</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Designed and developed secure enterprise applications using <strong>Java and Spring Boot</strong>, implementing RESTful APIs for user management and authentication.</li>
+                            <li>Integrated <strong>JWT-based authentication</strong> and role-based access control, strengthening system security for sensitive endpoints.</li>
+                            <li>Collaborated in an <strong>Agile environment</strong>, contributing to sprint planning, code reviews, and iterative testing.</li>
+                            <li>Assisted in configuring and troubleshooting cloud-based application environments on <strong>AWS</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3>Receptionist/Cashier | Family-Owned Store</h3>
+                            <span class="date">Current</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Deliver high-quality customer service and resolve complex issues through effective communication.</li>
+                            <li>Manage financial transactions and front-end operations with accuracy and attention to detail.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Cloud & Technical Projects</h2>
                     <div class="project-item">
                         <div class="project-header">
                             <h3>AWS Cloud Resume & CI/CD Pipeline</h3>
                             <span class="date">2026</span>
                         </div>
                         <ul class="project-bullets">
-                            <li><strong>Automation:</strong> Engineered a <strong>GitHub Actions</strong> pipeline that triggers <strong>Terraform</strong> on push, automating infrastructure deployment and CloudFront cache invalidation.</li>
-                            <li><strong>Security:</strong> Configured <strong>CloudFront OAC</strong> to restrict S3 bucket access, ensuring the site is served exclusively via global edge locations.</li>
-                            <li><strong>Infrastructure:</strong> Architected a fully <strong>Serverless</strong> stack (Lambda, DynamoDB) to maintain a highly available site with near-zero monthly overhead.</li>
+                            <li>Built a global static site using <strong>S3 and CloudFront OAC</strong> for secure, low-latency content delivery.</li>
+                            <li>Provisioned 100% of the infrastructure using <strong>Terraform (IaC)</strong>, ensuring reproducible environments.</li>
+                            <li>Automated the deployment lifecycle and cache invalidation using <strong>GitHub Actions</strong> pipelines.</li>
+                            <li>Developed a <strong>Python/Boto3</strong> Lambda function for real-time visitor tracking integrated with <strong>DynamoDB</strong>.</li>
                         </ul>
                     </div>
 
                     <div class="project-item">
                         <div class="project-header">
-                            <h3>Serverless Visitor Counter API</h3>
-                            <span class="date">2026</span>
+                            <h3>Virtual Enterprise Home Lab</h3>
+                            <span class="date">2024</span>
                         </div>
                         <ul class="project-bullets">
-                            <li>Developed a backend API using <strong>Python (Boto3)</strong> and <strong>AWS Lambda</strong> to interface with <strong>DynamoDB</strong> for real-time data persistence.</li>
-                            <li>Implemented CORS policies and security headers to facilitate secure cross-origin resource sharing between the frontend and AWS Function URLs.</li>
+                            <li>Configured a <strong>Windows Server</strong> environment with <strong>Active Directory</strong>, DHCP, and group policies.</li>
+                            <li>Applied cybersecurity tools to practice threat detection, incident response, and network defense.</li>
                         </ul>
                     </div>
                 </section>
@@ -63,27 +103,38 @@
 
             <div class="right-col">
                 <section>
-                    <h2>Technical Skills</h2>
+                    <h2>Education</h2>
+                    <p><strong>B.A. in Computer Science</strong><br>Rutgers University </p>
+                </section>
+
+                <section>
+                    <h2>Certifications</h2>
                     <div class="skill-group">
-                        <h4>Cloud & DevOps</h4>
-                        <p>AWS (S3, CloudFront, Lambda, DynamoDB), Terraform, GitHub Actions, CI/CD</p>
-                    </div>
-                    <div class="skill-group">
-                        <h4>Programming</h4>
-                        <p>Python (Boto3), JavaScript, HTML5, CSS3, PowerShell, Bash</p>
+                        <p><strong>AWS Solutions Architect – Associate</strong> (2026)</p>
+                        <p><strong>AWS Cloud Practitioner</strong> (2024) </p>
+                        <p><strong>CompTIA Security+ ce</strong> (2023) </p>
+                        <p><strong>CompTIA Network+</strong> (In Progress) </p>
                     </div>
                 </section>
 
                 <section>
-                    <h2>Education</h2>
-                    <div class="edu-item">
-                        <p><strong>B.S. in Computer Science</strong><br>University Name</p>
+                    <h2>Technical Skills</h2>
+                    <div class="skill-group">
+                        <h4>Cloud & DevOps</h4>
+                        <p>AWS, Terraform, GitHub Actions, Docker, CI/CD</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Languages</h4>
+                        <p> Java, Spring Boot, JavaScript, Python (Boto3),PowerShell, Bash</p>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Tools & Systems</h4>
+                        <p>Git, Active Directory, Linux, Windows Server</p>
                     </div>
                 </section>
             </div>
-        </div>
+        </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
