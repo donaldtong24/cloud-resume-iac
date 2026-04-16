@@ -39,7 +39,7 @@ jobs:
           # Use 'sed' to replace the placeholder in your script
           # This assumes you have 'const url = "LAMBDA_URL_PLACEHOLDER";' in your script.js
 
-          sed -i "s|LAMBDA_URL_PLACEHOLDER|$LAMBDA_URL|g" script.js
+          sed -i "s|LAMBDA_URL_PLACEHOLDER|$LAMBDA_URL|g" website/script.js
 
       - name: Sync S3 Bucket
         run: |
