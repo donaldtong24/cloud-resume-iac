@@ -3,13 +3,13 @@ name: Deploy Resume Stack
 on:
   push:
     branches:
-      - main  # This triggers the code whenever you 'git push' to main
+      - main # This triggers the code whenever you 'git push' to main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production  # This links to the Environment Secrets you just made
-    
+    environment: production # This links to the Environment Secrets you just made
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -36,7 +36,11 @@ jobs:
           aws s3 sync ./website s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
         # Replace './website' with the folder name where your index.html is located
 
-      # Invalidate CloudFront (The "Refresh" Button)
-      - name: CloudFront Invalidation
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      # This step captures the ID from main.tf
+      - name: Get CloudFront ID
+        id: vars
+        run: echo "DIST_ID=$(terraform output -raw cloudfront_distribution_id)" >> $GITHUB_ENV
+
+      # Now use the variable we just captured instead of the secret
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{ env.DIST_ID }} --paths "/*"
