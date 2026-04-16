@@ -31,6 +31,16 @@ jobs:
         # -auto-approve is critical because there is no human to type 'yes' in GitHub
         run: terraform apply -auto-approve
 
+      - name: Update Lambda URL in JavaScript
+        run: |
+          #get the Lambda URL from Terraform output
+          LAMBDA_URL=$(terraform output -raw lambda_url)
+
+          # Use 'sed' to replace the placeholder in your script
+          # This assumes you have 'const url = "LAMBDA_URL_PLACEHOLDER";' in your script.js
+
+          sed -i "s|LAMBDA_URL_PLACEHOLDER|$LAMBDA_URL|g" script.js
+
       - name: Sync S3 Bucket
         run: |
           aws s3 sync ./website s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete

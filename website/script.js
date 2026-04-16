@@ -1,7 +1,7 @@
 const counter = document.getElementById("count")
 async function updateCounter() {
     try {
-        let response = await fetch("https://qtm3ke6mfmgbqgzuvnx7gndn7e0ezeul.lambda-url.us-east-1.on.aws/");
+        let response = await fetch("LAMBDA_URL_PLACEHOLDER");
         let data = await response.json();
         counter.innerHTML = `Views: ${data.count}`;
     } catch (error) {
