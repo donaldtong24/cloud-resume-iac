@@ -30,3 +30,8 @@ jobs:
       - name: Terraform Apply
         # -auto-approve is critical because there is no human to type 'yes' in GitHub
         run: terraform apply -auto-approve
+
+      - name: Invalidate CloudFront
+        run: |
+          DIST_ID=$(terraform output -raw cloudfront_distribution_id)
+          aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"

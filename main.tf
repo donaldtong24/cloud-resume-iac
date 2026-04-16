@@ -249,3 +249,6 @@ output "lambda_url" {
   value = aws_lambda_function_url.lambda_url.function_url
 }
 
+output "cloudfront_distribution_id" {
+  value = aws_cloudfront_distribution.s3_distribution.id
+}
