@@ -33,12 +33,12 @@ jobs:
 
       - name: Update Lambda URL in JavaScript
         run: |
-          #get the Lambda URL from Terraform output
+          # 1. Grab both outputs from Terraform
           LAMBDA_URL=$(terraform output -raw lambda_url)
+          BUCKET_NAME=$(terraform output -raw website_bucket_name)
 
           # Use 'sed' to replace the placeholder in your script
           # This assumes you have 'const url = "LAMBDA_URL_PLACEHOLDER";' in your script.js
-
           sed -i "s|LAMBDA_URL_PLACEHOLDER|$LAMBDA_URL|g" website/script.js
           
           # Store the bucket name in the GitHub Environment for the next step
