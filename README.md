@@ -59,4 +59,4 @@ Key learnings:
     
     version of the resume within seconds of a deployment
 
-markdown # Cloud Resume Infrastructure ![Architecture Diagram](./assets/ArchitectureDiagram.png)
+markdown # Cloud Resume Infrastructure ![Architecture Diagram](./assets/ArchitectureDiagram.drawio.png)
