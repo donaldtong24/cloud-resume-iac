@@ -10,3 +10,7 @@ async function updateCounter() {
     }
 }
 updateCounter();
+
+// I used the Fetch API to make an asynchronous call to my serverless backend. 
+// By using async/await, I ensured the website remains responsive while waiting 
+// for the database to return the latest view count.
