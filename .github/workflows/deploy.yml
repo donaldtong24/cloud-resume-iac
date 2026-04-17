@@ -40,11 +40,17 @@ jobs:
           # This assumes you have 'const url = "LAMBDA_URL_PLACEHOLDER";' in your script.js
 
           sed -i "s|LAMBDA_URL_PLACEHOLDER|$LAMBDA_URL|g" website/script.js
+          
+          # Store the bucket name in the GitHub Environment for the next step
+          echo "S3_BUCKET=$BUCKET_NAME" >> $GITHUB_ENV
 
       - name: Sync S3 Bucket
         run: |
-          aws s3 sync ./website s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
+          aws s3 sync ./website s3://${{ env.S3_BUCKET }} --delete 
         # Replace './website' with the folder name where your index.html is located
+        #deletes any old files that are no longer in repo
+        # TODO : instead of using the secret just pull the bucket name from Terraform output like we did with the cloudfront distribution ID
+
 
       # This step captures the ID from main.tf
       - name: Get CloudFront ID

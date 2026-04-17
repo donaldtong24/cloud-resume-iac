@@ -1,3 +1,4 @@
+# S3 backend
 terraform {
   backend "s3" {
     bucket         = "donald-tong-terraform-bucket" # Create this bucket manually once
@@ -21,7 +22,7 @@ provider "aws" {
 
 # This creates your S3 bucket for the resume
 resource "aws_s3_bucket" "resume_bucket" {
-  bucket = "donald-tong-cloud-resume-iac" # Change this!
+  bucket = "donald-tong-cloud-resume-iac"
 }
 
 # This makes it a website
@@ -32,34 +33,32 @@ resource "aws_s3_bucket_website_configuration" "resume_config" {
     suffix = "index.html"
   }
 }
-
+# I host my static assets (HTML/CSS/JS) in an S3 bucket
 # This tells terraform to take your local file and upload it to teh bucket
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "index.html"
   source       = "./website/index.html" # Make sure your file is named exactly this in your folder!
   content_type = "text/html"
-  # THIS IS THE MISSING PIECE:
-  etag = filemd5("./website/index.html")
+  etag = filemd5("./website/index.html") # This allows terraform to know the file changed
 }
+
 #this tells terraform to take your local styles.css file
 resource "aws_s3_object" "style" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "style.css"
   source       = "./website/style.css" # Ensure this file exists in your project folder
   content_type = "text/css"
-  # THIS IS THE MISSING PIECE:
-  etag = filemd5("./website/style.css")
+  etag = filemd5("./website/style.css") # This allows terraform to know the file changed
 }
-# script.js
+
+# this tells terraform to take your local script file
 resource "aws_s3_object" "javascript" {
   bucket       = aws_s3_bucket.resume_bucket.id
   key          = "script.js"
   source       = "./website/script.js"
   content_type = "text/javascript"
-
-  # THIS IS THE MISSING PIECE:
-  etag = filemd5("./website/script.js")
+  etag = filemd5("./website/script.js") # This allows terraform to know the file changed
 }
 
 # Set up for OAC and Cloudfront
@@ -172,6 +171,7 @@ ITEM
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
 
+  # tells aws that i trust this lambda service
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -187,6 +187,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 
 # 2. The "Visa" (The Policy) that allows talking to DynamoDB
+# lists out what the role is allowed to do
 resource "aws_iam_role_policy" "dynamodb_lambda_policy" {
   name = "dynamodb_lambda_policy"
   role = aws_iam_role.iam_for_lambda.id
@@ -206,6 +207,8 @@ resource "aws_iam_role_policy" "dynamodb_lambda_policy" {
   })
 }
 # Permission 1: Specific to the Function URL
+# these are attached to the resource
+# allows public execution
 resource "aws_lambda_permission" "allow_public_access" {
   statement_id           = "AllowExecutionFromPublicURL" # Unique ID 1
   action                 = "lambda:InvokeFunctionUrl"
@@ -255,6 +258,10 @@ output "lambda_url" {
 
 output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.s3_distribution.id
+}
+
+output "website_bucket_name" {
+  value = aws_s3_bucket.resume_bucket.id
 }
 
 # 1. Look up your existing Hosted Zone
