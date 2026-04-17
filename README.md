@@ -2,7 +2,7 @@ AWS Cloud Resume
 
 A full-stack, serverless resume website built on AWS using Infrastructure as Code (Terraform) and automated through a CI/CD pipeline.
 
-Live Demo: thedonaldtong.com
+Live Demo: [thedonaldtong.com] (https://thedonaldtong.com)
 
 Cloud Resume Infrastructure ![Architecture Diagram](./assets/ArchitectureDiagram.drawio.png)
 
@@ -24,13 +24,11 @@ The project follows a serverless, highly-available architecture designed for glo
 
     CI/CD: GitHub Actions automates infrastructure updates, content synchronization, and CloudFront cache invalidation. GitHub Secrets for secure AWS credential management
 
-
 DNS & Domain Management
 
     Apex & Subdomain Support: Configured Route 53 with Alias records for both thedonaldtong.com and www.thedonaldtong.com, ensuring seamless redirection and a professional user experience.
 
-
- Serverless Visitor Counter (Lean Architecture)
+Serverless Visitor Counter (Lean Architecture)
 
     Lambda Function URLs: Implemented a direct HTTPS endpoint for the Python backend, removing the overhead of API Gateway while maintaining secure communication.
 
@@ -38,7 +36,7 @@ DNS & Domain Management
 
     Frontend Integration: Used the JavaScript Fetch API to asynchronously retrieve and display the live counter data.
 
- Security-First Approach
+Security-First Approach
 
     Origin Access Control (OAC): Secured the S3 bucket to prevent public access; the bucket only accepts requests signed by the CloudFront distribution.
 
