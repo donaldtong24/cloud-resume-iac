@@ -77,15 +77,19 @@
                     <h2>Cloud & Technical Projects</h2>
                     <div class="project-item">
                         <div class="project-header">
-                            <h3>AWS Cloud Resume</h3>
+                            <h3>
+                                <a href="https://github.com/donaldtong24/cloud-resume-iac" target="_blank" rel="noopener noreferrer">
+                                    AWS Cloud Resume <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </h3>
                             <span class="date">2026</span>
                         </div>
                         <p>Built a full-stack, serverless resume application featuring automated CI/CD and a live visitor counter.</p>
                         <ul class="project-bullets">
-                            <li><strong>Infrastructure as Code:</strong> Provisioned S3, CloudFront, Route 53, and DynamoDB using <strong>Terraform</strong> for reproducible cloud environments.</li>
-                            <li><strong>Serverless Backend:</strong> Engineered a <strong>Python (Boto3)</strong> Lambda function using Function URLs to atomically increment visitor data in <strong>DynamoDB</strong>.</li>
-                            <li><strong>DevOps Pipeline:</strong> Architected a <strong>GitHub Actions</strong> CI/CD workflow to automate infrastructure updates and frontend deployments with CloudFront cache invalidation.</li>
-                            <li><strong>Security & Networking:</strong> Configured <strong>Route 53</strong> Alias records and enforced HTTPS via <strong>ACM</strong> and CloudFront Origin Access Control (OAC).</li>
+                            <li><strong>Infrastructure as Code:</strong> Achieved 100% IaC coverage using <strong>Terraform</strong> to provision a globally distributed stack (S3, CloudFront, Route 53, DynamoDB), ensuring a fully reproducible environment.</li>
+                            <li><strong>Serverless Backend:</strong> Engineered a Python (<strong>Boto3</strong>) Lambda function leveraging <strong>Function URLs</strong> to perform atomic increments on visitor data, ensuring database integrity during concurrent requests.</li>
+                            <li><strong>DevOps Pipeline:</strong> Streamlined deployment cycles by architecting a <strong>GitHub Actions CI/CD</strong> workflow that automates infrastructure provisioning and frontend synchronization.</li>
+                            <li><strong>Security & Networking:</strong> Hardened origin security using <strong>CloudFront Origin Access Control (OAC)</strong> and enforced global HTTPS encryption via <strong>ACM</strong> and <strong>Route 53 Alias</strong> records.</li>
                         </ul>
                     </div>
 
