@@ -58,3 +58,5 @@ Key learnings:
     I recognized that S3 uploads alone were insufficient for real-time updates due to edge caching. I integrated a create-invalidation command into my CI/CD pipeline, ensuring that global users see the latest 
     
     version of the resume within seconds of a deployment
+
+markdown # Cloud Resume Infrastructure ![Architecture Diagram](./assets/ArchitectureDiagram.png)
