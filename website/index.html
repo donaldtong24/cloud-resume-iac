@@ -1,154 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donald Tong | Cloud Engineer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donald Tong — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1a3557;
+    --blue:    #2c5f9e;
+    --dark:    #111827;
+    --mid:     #374151;
+    --muted:   #6b7280;
+    --light:   #9ca3af;
+    --rule:    #dce4ef;
+    --bg:      #ffffff;
+    --accent:  #e8f0fb;
+  }
+
+  html { font-size: 13.5px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 52px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 6px; }
+
+  .name {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .contact {
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 2px;
+    align-items: center;
+  }
+
+  .contact a { color: var(--blue); text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  .sep { color: var(--rule); margin: 0 4px; }
+
+  /* ── RULE ── */
+  .rule {
+    border: none;
+    border-top: 1.5px solid var(--rule);
+    margin: 10px 0 0;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-top: 14px; }
+
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── JOB / PROJECT HEADER ── */
+  .entry { margin-bottom: 10px; }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    gap: 8px;
+  }
+
+  .entry-left {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .org {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--dark);
+  }
+
+  .role {
+    font-size: 0.82rem;
+    color: var(--mid);
+  }
+
+  .dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--light);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .project-title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--navy);
+  }
+
+  .project-title a {
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.15s;
+  }
+
+  .project-title a:hover { border-color: var(--blue); }
+
+  .link-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blue);
+    background: var(--accent);
+    padding: 1px 6px;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .link-tag:hover { background: #d4e4f7; }
+
+  /* ── BULLETS ── */
+  .bullets { list-style: none; padding: 0; }
+
+  .bullets li {
+    display: flex;
+    gap: 8px;
+    font-size: 0.81rem;
+    color: var(--mid);
+    margin-bottom: 3px;
+    line-height: 1.55;
+  }
+
+  .bullets li::before {
+    content: "–";
+    color: var(--blue);
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+
+  .label {
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+  }
+
+  .edu-left { display: flex; gap: 6px; align-items: baseline; }
+  .school { font-weight: 600; color: var(--dark); }
+  .degree { color: var(--mid); }
+
+  .certs {
+    font-size: 0.80rem;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+
+  .certs span { font-weight: 600; color: var(--dark); }
+
+  /* ── SKILLS ── */
+  .skill-row {
+    font-size: 0.80rem;
+    color: var(--mid);
+    margin-bottom: 3px;
+    line-height: 1.55;
+  }
+
+  .skill-row span { font-weight: 600; color: var(--dark); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { padding: 28px 36px; font-size: 12px; }
+    .name { font-size: 1.8rem; }
+    @page { margin: 0; size: letter; }
+  }
+</style>
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-container">
-            <div class="brand">
-                <h1>Donald Tong</h1>
-                <span class="tagline">Cloud Developer</span>
-            </div>
-            
-            <div class="nav-counter">
-                <div class="live-status">
-                    <span class="dot"></span>
-                    <span class="live-text">LIVE</span>
-                </div>
-                <div class="counter-content">
-                    <span class="label">Views:</span>
-                    <span id="count" class="count-number">...</span>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container">
-        <header class="contact-header">
-            <div class="contact-links">
-                <a>(732)-986-6269</a> |
-                <a href="mailto:donaldtong24@gmail.com">donaldtong24@gmail.com</a> | 
-                <a href="https://github.com/donaldtong24">github.com/donaldtong24</a> | 
-                <a href="https://linkedin.com/in/donald-tong">linkedin.com/in/donald-tong</a>
-                
-            </div>
-        </header>
+<!-- HEADER -->
+<div class="header">
+  <div class="name">Donald Tong</div>
+  <div class="contact">
+    <span>(732) 986-6269</span>
+    <span class="sep">·</span>
+    <a href="mailto:donaldtong24@gmail.com">donaldtong24@gmail.com</a>
+    <span class="sep">·</span>
+    <a href="https://thedonaldtong.com" target="_blank">thedonaldtong.com</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/donaldtong24" target="_blank">github.com/donaldtong24</a>
+    <span class="sep">·</span>
+    <a href="https://linkedin.com/in/donald-tong" target="_blank">linkedin.com/in/donald-tong</a>
+  </div>
+</div>
+<hr class="rule">
 
-        <main class="main-layout">
-            <div class="left-col">
-                <section>
-                    <h2>Professional Summary</h2>
-                    <p>Associate Software Engineer at Infosys transitioning into Cloud Infrastructure. Experienced in automating CI/CD pipelines with Jenkins and managing containerized environments using AWS and Kubernetes. Focused on system reliability and infrastructure as code.</p>
-                </section>
+<!-- EXPERIENCE -->
+<div class="section">
+  <div class="section-title">Professional Experience</div>
 
-                <section>
-                    <h2>Professional Experience</h2>
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3>Associate Software Engineer | Infosys LTD</h3>
-                            <span class="date">Aug 2022 - Sept 2023</span>
-                        </div>
-                        <ul class="project-bullets">
-                            <li>Backend Engineering: Developed and maintained robust, scalable microservices using Java and Spring Boot.</li>
-                            <li>CI/CD & Automation: Accelerated development cycles by configuring and maintaining automated build and deploy pipelines using Jenkins, Maven and Git, reducing manual intervention by streamlining code integration across environments.</li>
-                            <li>System Reliability: Actively resolved production issues by analyzing Linux logs and developing runbooks, improving system uptime and streamlining incident response.</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3>Operations Associate</h3>
-                            <span class="date">Current</span>
-                        </div>
-                        <ul class="project-bullets">
-                            <li>Deliver high-quality customer service and resolve complex issues through effective communication.</li>
-                            <li>Manage financial transactions and front-end operations with accuracy and attention to detail.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Cloud & Technical Projects</h2>
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3>
-                                <a href="https://github.com/donaldtong24/cloud-resume-iac" target="_blank" rel="noopener noreferrer">
-                                    AWS Cloud Resume <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </h3>
-                            <span class="date">2026</span>
-                        </div>
-                        <p>Built a full-stack, serverless resume application featuring automated CI/CD and a live visitor counter.</p>
-                        <ul class="project-bullets">
-                            <li><strong>Infrastructure as Code:</strong> Achieved 100% IaC coverage using <strong>Terraform</strong> to provision a globally distributed stack (S3, CloudFront, Route 53, DynamoDB), ensuring a fully reproducible environment.</li>
-                            <li><strong>Serverless Backend:</strong> Engineered a python lambda function leveraging <strong>Function URLs</strong> to perform atomic increments on visitor data, ensuring database integrity during concurrent requests.</li>
-                            <li><strong>DevOps Pipeline:</strong> Streamlined deployment cycles by architecting a <strong>GitHub Actions CI/CD</strong> workflow that automates infrastructure provisioning and frontend synchronization.</li>
-                            <li><strong>Security & Networking:</strong> Hardened origin security using <strong>CloudFront Origin Access Control (OAC)</strong> and enforced global HTTPS encryption via <strong>ACM</strong> and <strong>Route 53 Alias</strong> records.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3>Automated Microservice Infrastructure & Monitoring (EKS)</h3>
-                            <span class="date">2026</span>
-                        </div>
-                        <ul class="project-bullets">
-                            <li><strong>Infrastructure as Code:</strong> Provisioned a production-ready AWS EKS cluster and managed networking components using Terraform, ensuring 100% reproducible environments.</li>
-                            <li><strong>CI/CD Pipeline:</strong> Architected a GitHub Actions workflow to automate Docker builds, versioned image pushes to Amazon ECR, and managed zero-downtime rolling updates to the cluster.</li>
-                            <li><strong>Observability & Monitoring:</strong> Implemented a full-stack monitoring solution using Prometheus and Grafana to visualize cluster health, track resource utilization, and perform root-cause analysis on system anomalies.</li>
-                            <li><strong>Container Orchestration:</strong> Configured Kubernetes deployments and services to manage microservice lifecycles, ensuring high availability and seamless traffic routing via Load Balancers.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3>Virtual Enterprise Home Lab</h3>
-                            <span class="date">2024</span>
-                        </div>
-                        <ul class="project-bullets">
-                            <li>Architected a virtualized Windows Server environment featuring Active Directory for identity management, alongside DHCP and group policies to simulate enterprise network administration</li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
-
-            <div class="right-col">
-                <section>
-                    <h2>Education</h2>
-                    <p><strong>B.A. in Computer Science</strong><br>Rutgers University </p>
-                </section>
-
-                <section>
-                    <h2>Certifications</h2>
-                    <div class="skill-group">
-                        <p><strong>AWS Solutions Architect – Associate</strong> (2026)</p>
-                        <p><strong>AWS Cloud Practitioner</strong> (2024) </p>
-                        <p><strong>CompTIA Security+ ce</strong> (2023) </p>
-                        <p><strong>CompTIA Network+</strong> (In Progress) </p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Technical Skills</h2>
-                    <div class="skill-group">
-                        <h4>Cloud & DevOps</h4>
-                        <p>AWS (EKS, ECR, S3, Lambda, Route 53), Terraform, GitHub Actions, Docker, CI/CD, Kubernetes, Jenkins</p>
-                    </div>
-                    <div class="skill-group">
-                        <h4>Software engineering & scripting</h4>
-                        <p> Java, Spring Boot, JavaScript, Python, SQL,PowerShell, Bash, HTML</p>
-                    </div>
-                    <div class="skill-group">
-                        <h4>Tools & Systems</h4>
-                        <p>Git, Active Directory, Linux, Windows Server, REST APIs, Prometheus, Grafana, Jira</p>
-                    </div>
-                </section>
-            </div>
-        </main>
+  <div class="entry">
+    <div class="entry-header">
+      <div class="entry-left">
+        <span class="org">Infosys</span>
+        <span class="role">— Associate Software Engineer</span>
+      </div>
+      <span class="dates">Aug 2022 – Sept 2023</span>
     </div>
-    <script src="script.js"></script>
+    <ul class="bullets">
+      <li><span><span class="label">Backend Engineering:</span> Built and maintained scalable Java/Spring Boot microservices in distributed production environments.</span></li>
+      <li><span><span class="label">CI/CD & Automation:</span> Designed Jenkins pipelines with Maven and Git, reduced manual deployment steps and streamlined integration across dev, staging, and prod.</span></li>
+      <li><span><span class="label">Incident Response:</span> Triaged production issues via Linux log analysis, authored runbooks for recurring failure patterns, and reduced mean time to resolution.</span></li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="entry-left">
+        <span class="org">Vie Voo Nails</span>
+        <span class="role">— Front Desk & Customer Service Associate</span>
+      </div>
+      <span class="dates">Sept 2023 – Present</span>
+    </div>
+    <ul class="bullets">
+      <li><span><span class="label">Customer Service & Operations:</span> Managed front desk operations including appointment scheduling, register transactions, and real-time resolution of customer concerns, maintaining composure and clear communication in a high-volume, fast-paced environment.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section">
+  <div class="section-title">Cloud & Technical Projects</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="project-title">
+        AWS Networking & Incident Response Lab
+        <a href="https://github.com/donaldtong24/aws-support-lab" target="_blank" class="link-tag">GitHub</a>
+      </div>
+    </div>
+    <ul class="bullets">
+      <li><span><span class="label">Networking & IaC:</span> Provisioned a production-patterned VPC (public/private subnets, IGW, NAT instance, route tables) across 2 AZs using Terraform with 100% IaC coverage.</span></li>
+      <li><span><span class="label">Troubleshooting:</span> Diagnosed and resolved 3 intentional misconfigurations — security group rule removal, missing default route, incorrect ALB health check path — using AWS CLI and structured runbooks.</span></li>
+      <li><span><span class="label">Observability:</span> Built a CloudWatch + SNS alerting pipeline with 4 alarms (CPU, EC2 status check, ALB 5xx, unhealthy hosts) and verified end-to-end email delivery.</span></li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="project-title">
+        AWS Cloud Resume
+        <a href="https://thedonaldtong.com" target="_blank" class="link-tag">Live Demo</a>
+      </div>
+    </div>
+    <ul class="bullets">
+      <li><span><span class="label">IaC & DevOps:</span> 100% Terraform-provisioned stack (S3, CloudFront, Route53, DynamoDB, ACM) with GitHub Actions CI/CD for automated deployments and a Python Lambda visitor counter.</span></li>
+      <li><span><span class="label">Security:</span> Hardened origin access via CloudFront OAC and enforced global HTTPS encryption via ACM — zero direct S3 exposure.</span></li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="project-title">
+        Automated Microservice Infrastructure & Monitoring (EKS)
+        <a href="https://github.com/donaldtong24" target="_blank" class="link-tag">GitHub</a>
+      </div>
+    </div>
+    <ul class="bullets">
+      <li><span><span class="label">IaC & DevOps:</span> Provisioned AWS EKS cluster with Terraform; automated Docker builds, ECR versioning, and zero-downtime rolling update deployments via GitHub Actions.</span></li>
+      <li><span><span class="label">Observability:</span> Deployed Prometheus and Grafana with OOMKilled pod alerts and CPU/memory utilization dashboards for real-time root cause analysis.</span></li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <div class="project-title">Virtual Enterprise Home Lab</div>
+    </div>
+    <ul class="bullets">
+      <li><span><span class="label">Infrastructure:</span> Architected a virtualized Windows Server environment featuring Active Directory for identity management, alongside DHCP and Group Policies to simulate enterprise network administration.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section">
+  <div class="section-title">Education & Certifications</div>
+  <div class="edu-row">
+    <div class="edu-left">
+      <span class="school">Rutgers University</span>
+      <span class="degree">— B.A. in Computer Science, New Brunswick NJ</span>
+    </div>
+  </div>
+  <div class="certs"><span>Certifications:</span> AWS Solutions Architect – Associate &nbsp;·&nbsp; AWS Cloud Practitioner &nbsp;·&nbsp; CompTIA Security+ ce</div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+  <div class="section-title">Technical Skills</div>
+  <div class="skill-row"><span>Infrastructure & Automation:</span> AWS (VPC, EKS, ECR, S3, Lambda, ALB, CloudWatch, SNS, IAM), Terraform, GitHub Actions, Jenkins, Docker, Kubernetes, CI/CD</div>
+  <div class="skill-row"><span>Platforms & Observability:</span> Linux, Windows Server, Active Directory, Prometheus, Grafana, Jira, Git</div>
+  <div class="skill-row"><span>Software Engineering:</span> Java, Spring Boot, Python, JavaScript, HTML, SQL, REST APIs, Bash, PowerShell</div>
+</div>
+
 </body>
 </html>
